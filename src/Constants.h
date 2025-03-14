@@ -5,7 +5,7 @@
 
 // Tone settings for feedback sound
 namespace ToneConstants {
-    const uint8_t SPEAKER_VOLUME = 98U;
+    const uint8_t SPEAKER_VOLUME = 48U;
     const float TOUCH_TONE_FREQUENCY = 659.26F;
     const float COLLISION_TONE_FREQUENCY = 82.407F;
     const uint32_t TONE_DURATION = 50U;

@@ -18,6 +18,13 @@ void setup() {
   // Set volume
   M5.Speaker.setVolume(ToneConstants::SPEAKER_VOLUME);
 
+  // Play boot sound
+  M5.Speaker.tone(ToneConstants::TOUCH_TONE_FREQUENCY, ToneConstants::TONE_DURATION);
+  delay(100);
+  M5.Speaker.tone(ToneConstants::TOUCH_TONE_FREQUENCY, ToneConstants::TONE_DURATION);
+  delay(100);
+  M5.Speaker.tone(ToneConstants::TOUCH_TONE_FREQUENCY, ToneConstants::TONE_DURATION);
+
   // Initialize random seed
   randomSeed(millis());
   
