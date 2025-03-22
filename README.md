@@ -11,13 +11,32 @@ m5core2_gravsim プロジェクトは、[M5Stack Core 2](https://docs.m5stack.co
 
 ![video](video.gif)
 
-
 # Installation
+
+1. Register an [M5Stack Community](https://community.m5stack.com/) account if you haven't already.
+1. Launch the [M5Burner](https://docs.m5stack.com/en/download) .
+1. Click `USER CUSTOM` in the lower left corner.
+1. Log in to the M5Stack Community.
+1. Click the `Share Burn` button.
+1. Enter `UwE1Ekq5yMOozHfk` in the `Share Code` field.
+1. Click the lightning icon :zap: .
+
+\[日本語\]
+
+1. [M5Stack Community](https://community.m5stack.com/) のアカウントをまだ登録していない場合は登録してください。
+1. [M5Burner](https://docs.m5stack.com/en/download) を起動します。
+1. 左下隅の `USER CUSTOM` をクリックします。
+1. M5Stack Communityにログインします。
+1. `Share Burn` ボタンをクリックします。
+1. `Share Code` フィールドに `UwE1Ekq5yMOozHfk` と入力します。
+1. 稲妻アイコン :zap: をクリックします。
+
+# Installation for developers
 
 1. Clone the repository:
     ```sh
     git clone https://github.com/cubic9com/m5core2_gravsim.git
-    cd m5core2_voronoi
+    cd m5core2_gravsim
     ```
 
 2. Install [Visual Studio Code](https://code.visualstudio.com/) if you haven't already.
@@ -37,7 +56,7 @@ m5core2_gravsim プロジェクトは、[M5Stack Core 2](https://docs.m5stack.co
 
 6. Open the project:
     - In the right Editor Groups, Click `Open Project` in the `PIO HOME` tab.
-    - Select the cloned `m5core2_voronoi` project folder.
+    - Select the cloned `m5core2_gravsim` project folder.
 
 7. Upload the project:
     - In the left Primary Sidebar, go to `PROJECT TASKS > m5stack-core2 > General > Upload`.
@@ -47,7 +66,7 @@ m5core2_gravsim プロジェクトは、[M5Stack Core 2](https://docs.m5stack.co
 1. リポジトリをクローンします:
     ```sh
     git clone https://github.com/cubic9com/m5core2_gravsim.git
-    cd m5core2_voronoi
+    cd m5core2_gravsim
     ```
 
 2. まだインストールしていない場合は、[Visual Studio Code](https://code.visualstudio.com/) をインストールします。
@@ -67,7 +86,7 @@ m5core2_gravsim プロジェクトは、[M5Stack Core 2](https://docs.m5stack.co
 
 6. プロジェクトを開きます:
     - 右のエディターグループ内の `PIO HOME` タブで `Open Project` をクリックします。
-    - クローンした `m5core2_voronoi` プロジェクトフォルダーを選択します。
+    - クローンした `m5core2_gravsim` プロジェクトフォルダーを選択します。
 
 7. プロジェクトをアップロードします:
     - 左のメインサイドバーから `PROJECT TASKS > m5stack-core2 > General > Upload` を選択します。
