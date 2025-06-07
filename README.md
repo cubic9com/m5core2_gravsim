@@ -1,5 +1,5 @@
 
-# Overview
+# Overview / 概要
 
 The m5core2_gravsim project is a gravity simulator of planetary system for the [M5Stack Core 2](https://docs.m5stack.com/#/en/core/core2) .
 
@@ -7,11 +7,25 @@ The m5core2_gravsim project is a gravity simulator of planetary system for the [
 
 m5core2_gravsim プロジェクトは、[M5Stack Core 2](https://docs.m5stack.com/#/en/core/core2) 用の惑星系の万有引力シミュレーターです。
 
-# Video
+# Video / 動画
 
 ![video](video.gif)
 
-# Installation
+# Motivation / 開発のきっかけ
+
+Have you ever thought how cool it'd be to hold the universe in the palm of your hand?
+That little idea was where this whole project started.
+I wanted to do more than just look at space—I wanted to bring the swirling dance of the planets to life in an interactive way, right on a tiny device like the M5Stack Core 2.
+It's a fun way to play with their motion and grasp how gravity shapes our cosmos.
+
+\[日本語\]
+
+手のひらに宇宙を乗せられたら、ちょっとワクワクしませんか？
+そんなちょっとした思いつきから、このプロジェクトは始まりました。
+M5Stack Core 2みたいな小さなデバイスの上で、ただ眺めるだけじゃなく、惑星がくるくる回る宇宙のダンスをインタラクティブに再現してみたい。
+天体の動きを楽しみながら、重力のルールを体験できる──そんな仕組みを作りたかったんです。
+
+# Installation / インストール
 
 1. Register an [M5Stack Community](https://community.m5stack.com/) account if you haven't already.
 1. Launch the [M5Burner](https://docs.m5stack.com/en/download) .
@@ -31,7 +45,7 @@ m5core2_gravsim プロジェクトは、[M5Stack Core 2](https://docs.m5stack.co
 1. `Share Code` フィールドに `UwE1Ekq5yMOozHfk` と入力します。
 1. 稲妻アイコン :zap: をクリックします。
 
-# Installation for developers
+# Installation for developers / インストール（開発者向け）
 
 1. Clone the repository:
     ```sh
@@ -91,7 +105,7 @@ m5core2_gravsim プロジェクトは、[M5Stack Core 2](https://docs.m5stack.co
 7. プロジェクトをアップロードします:
     - 左のメインサイドバーから `PROJECT TASKS > m5stack-core2 > General > Upload` を選択します。
 
-# License
+# License / ライセンス
 
 Copyright (C) 2025, cubic9com All rights reserved.
 
