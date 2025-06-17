@@ -55,7 +55,7 @@ M5Stack Core 2みたいな小さなデバイスの上で、ただ眺めるだけ
 
 2. Install [Visual Studio Code](https://code.visualstudio.com/) if you haven't already.
 
-3. Open the project in Visual Studio Code:
+3. Open the project using Visual Studio Code:
     ```sh
     code .
     ```
@@ -65,14 +65,14 @@ M5Stack Core 2みたいな小さなデバイスの上で、ただ眺めるだけ
     - Search for `PlatformIO IDE` and install it.
 
 5. Open PlatformIO Home:
-    - In the left Activity Bar, click the PlatformIO icon.
-    - In the left Primary Sidebar, Go to `QUICK ACCESS > PIO Home > Open`.
+    - In the left Activity Bar, click PlatformIO icon.
+    - In the left Primary Sidebar, fo to `QUICK ACCESS > PIO Home > Open`.
 
 6. Open the project:
-    - In the right Editor Groups, Click `Open Project` in the `PIO HOME` tab.
+    - In the right Editor Group, click `Open Project` in the `PIO HOME` tab.
     - Select the cloned `m5core2_gravsim` project folder.
 
-7. Upload the project:
+7. Build and upload the project:
     - In the left Primary Sidebar, go to `PROJECT TASKS > m5stack-core2 > General > Upload`.
 
 \[日本語\]
@@ -102,7 +102,7 @@ M5Stack Core 2みたいな小さなデバイスの上で、ただ眺めるだけ
     - 右のエディターグループ内の `PIO HOME` タブで `Open Project` をクリックします。
     - クローンした `m5core2_gravsim` プロジェクトフォルダーを選択します。
 
-7. プロジェクトをアップロードします:
+7. プロジェクトをビルド＆アップロードします:
     - 左のメインサイドバーから `PROJECT TASKS > m5stack-core2 > General > Upload` を選択します。
 
 # License / ライセンス
@@ -111,5 +111,4 @@ Copyright (C) 2025, cubic9com All rights reserved.
 
 This project is licensed under the MIT license.
 
-See file `LICENSE` file for details.
-
+See the `LICENSE` file for details.
