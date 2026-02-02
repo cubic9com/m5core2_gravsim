@@ -21,7 +21,7 @@ uint16_t Planet::alphaBlend(uint16_t fg, uint16_t bg, uint8_t alpha) const {
 }
 
 Planet::Planet(double x, double y, double vx, double vy, uint16_t color)
-    : x(x), y(y), vx(vx), vy(vy), color(color) {
+    : x(x), y(y), vx(vx), vy(vy), color(color), trailIndex(0) {
     // Initialize trail positions
     for (int i = 0; i < PlanetConstants::TRAIL_LENGTH; i++) {
         trailX[i] = x;
@@ -38,14 +38,11 @@ void Planet::update(double ax, double ay, bool updateTrails) {
     x += vx * PhysicsConstants::TIME_SCALE;
     y += vy * PhysicsConstants::TIME_SCALE;
     
-    // Update trail positions (at regular intervals)
+    // Update trail positions using ring buffer (optimized - O(1) instead of O(n))
     if (updateTrails) {
-        for (int j = PlanetConstants::TRAIL_LENGTH - 1; j > 0; j--) {
-            trailX[j] = trailX[j - 1];
-            trailY[j] = trailY[j - 1];
-        }
-        trailX[0] = x;
-        trailY[0] = y;
+        trailIndex = (trailIndex + 1) % PlanetConstants::TRAIL_LENGTH;
+        trailX[trailIndex] = x;
+        trailY[trailIndex] = y;
     }
 }
 
@@ -57,11 +54,14 @@ void Planet::draw(M5Canvas& canvas, int centerX, int centerY) const {
 }
 
 void Planet::drawTrail(M5Canvas& canvas, int centerX, int centerY) const {
-    // Draw trails (oldest first)
-    for (int i = PlanetConstants::TRAIL_LENGTH - 1; i >= 0; i--) {
+    // Draw trails using ring buffer (newest to oldest)
+    for (int i = 0; i < PlanetConstants::TRAIL_LENGTH; i++) {
+        // Calculate ring buffer index (from newest to oldest)
+        int idx = (trailIndex - i + PlanetConstants::TRAIL_LENGTH) % PlanetConstants::TRAIL_LENGTH;
+        
         // Calculate screen position of trail point
-        int trailScreenX = centerX + trailX[i];
-        int trailScreenY = centerY + trailY[i];
+        int trailScreenX = centerX + trailX[idx];
+        int trailScreenY = centerY + trailY[idx];
         
         // Trail transparency (older points are more transparent)
         uint8_t alpha = 255 * (PlanetConstants::TRAIL_LENGTH - i) / PlanetConstants::TRAIL_LENGTH;
@@ -81,7 +81,7 @@ bool Planet::isOutOfBounds(int maxX, int maxY) const {
 bool Planet::isCollidedWithSun() const {
     // Collision detected if distance from sun center is less than sun radius
     double distanceSquared = x*x + y*y;
-    return (distanceSquared < SunConstants::RADIUS * SunConstants::RADIUS);
+    return (distanceSquared < SunConstants::RADIUS_SQUARED);
 }
 
 uint16_t Planet::randomPastelColor() {

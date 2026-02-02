@@ -84,7 +84,8 @@ private:
     double vx, vy;     // Velocity
     uint16_t color;    // Color
     
-    // Past positions (for trail effect)
+    // Past positions (for trail effect) - using ring buffer
     int trailX[PlanetConstants::TRAIL_LENGTH];
     int trailY[PlanetConstants::TRAIL_LENGTH];
+    int trailIndex;    // Ring buffer index for optimization
 };

@@ -1,15 +1,19 @@
 #include "Sun.h"
 #include <cmath>
 
-Sun::Sun() {
+Sun::Sun() : cachedColor(SunConstants::BASE_COLOR), lastColorUpdateTime(0) {
 }
 
 void Sun::draw(M5Canvas& canvas, int centerX, int centerY) {
-    // Calculate sun color
-    uint16_t sunColor = calculateColor();
+    // Update cached color periodically (not every frame for optimization)
+    unsigned long currentTime = millis();
+    if (currentTime - lastColorUpdateTime > COLOR_UPDATE_INTERVAL) {
+        cachedColor = calculateColor();
+        lastColorUpdateTime = currentTime;
+    }
     
-    // Draw the sun
-    canvas.fillCircle(centerX, centerY, SunConstants::RADIUS, sunColor);
+    // Draw the sun using cached color
+    canvas.fillCircle(centerX, centerY, SunConstants::RADIUS, cachedColor);
     
     // Draw rays from the sun
     for (int i = 0; i < 10; i++) {
@@ -26,11 +30,11 @@ void Sun::draw(M5Canvas& canvas, int centerX, int centerY) {
         int endY = centerY + length * sin(angle);
         
         // Draw line (same color as sun)
-        canvas.drawLine(startX, startY, endX, endY, sunColor);
+        canvas.drawLine(startX, startY, endX, endY, cachedColor);
     }
 }
 
-uint16_t Sun::calculateColor() const {
+uint16_t Sun::calculateColor() {
     // Get YELLOW color components (RGB565 format)
     uint8_t baseR = (SunConstants::BASE_COLOR >> 11) & 0x1F;
     uint8_t baseG = (SunConstants::BASE_COLOR >> 5) & 0x3F;

@@ -40,5 +40,10 @@ private:
      * Calculate the sun's color
      * @return Sun's color
      */
-    uint16_t calculateColor() const;
+    uint16_t calculateColor();
+    
+    // Cached color for optimization
+    uint16_t cachedColor;
+    unsigned long lastColorUpdateTime;
+    static constexpr unsigned long COLOR_UPDATE_INTERVAL = 100; // milliseconds
 };

@@ -99,4 +99,8 @@ private:
     double collisionEffectX;     // X coordinate of the collision effect
     double collisionEffectY;     // Y coordinate of the collision effect
     unsigned long collisionEffectStartTime;  // Start time of the collision effect
+    
+    // Reusable acceleration arrays (for optimization)
+    std::vector<double> accelerationX;
+    std::vector<double> accelerationY;
 };

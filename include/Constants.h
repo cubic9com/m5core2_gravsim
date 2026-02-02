@@ -25,6 +25,10 @@ namespace PhysicsConstants {
     constexpr double MAX_FORCE_DISTANCE = 100.0;
     // Velocity factor
     constexpr double SPEED_FACTOR = 2.0e-14;
+    
+    // Pre-computed constants for optimization
+    constexpr double MAX_FORCE_DISTANCE_SQUARED = MAX_FORCE_DISTANCE * MAX_FORCE_DISTANCE;
+    constexpr double MIN_DISTANCE_SQUARED = MIN_DISTANCE * MIN_DISTANCE;
 }
 
 // Constants related to the sun
@@ -37,6 +41,9 @@ namespace SunConstants {
     constexpr uint16_t BASE_COLOR = TFT_ORANGE;
     // Intensity of sun's brightness fluctuation
     constexpr float BRIGHTNESS_FLUCTUATION = 0.1f;  // Brightness fluctuation range (0-1)
+    
+    // Pre-computed constants for optimization
+    constexpr double RADIUS_SQUARED = RADIUS * RADIUS;
 }
 
 // Constants related to planets
