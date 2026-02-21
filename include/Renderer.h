@@ -6,6 +6,19 @@
 #include "Sun.h"
 
 /**
+ * Particle structure for firework effects
+ */
+struct Particle {
+    double x;              // X position (relative to center)
+    double y;              // Y position (relative to center)
+    double vx;             // X velocity
+    double vy;             // Y velocity
+    uint16_t color;        // Particle color
+    int lifetime;          // Remaining lifetime (frames)
+    int initialLifetime;   // Initial lifetime (for alpha calculation)
+};
+
+/**
  * Renderer Class
  * Handles rendering-related processes
  */
@@ -31,6 +44,14 @@ public:
      */
     void render(const PhysicsEngine& physicsEngine, 
                 bool isTouching, int touchStartX, int touchStartY);
+
+    /**
+     * Create firework effect at specified position
+     * @param x X position (relative to center)
+     * @param y Y position (relative to center)
+     * @param color Color of the firework particles
+     */
+    void createFirework(double x, double y, uint16_t color);
 
     /**
      * Get X coordinate of screen center
@@ -63,6 +84,29 @@ private:
     int centerX, centerY;  // Center coordinates of display
     unsigned long lastDrawTime;  // Timer for drawing
     
+    // Firework particles
+    static constexpr int MAX_PARTICLES = FireworkConstants::MAX_EFFECTS * FireworkConstants::PARTICLE_COUNT;
+    Particle particles[MAX_PARTICLES];
+    int particleCount;
+
+    /**
+     * Alpha blend a color with black background
+     * @param fg Foreground color
+     * @param alpha Alpha value (0-255)
+     * @return Blended color
+     */
+    uint16_t alphaBlend(uint16_t fg, uint8_t alpha) const;
+
+    /**
+     * Update firework particles
+     */
+    void updateParticles();
+
+    /**
+     * Draw firework particles
+     */
+    void drawParticles();
+
     /**
      * Draw an arrow
      * @param startX X coordinate of start point

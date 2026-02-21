@@ -6,8 +6,8 @@
 #include "Sun.h"
 
 // Global variables
-PhysicsEngine physicsEngine;
 Renderer renderer(M5.Display);
+PhysicsEngine physicsEngine(renderer);
 TouchHandler touchHandler(physicsEngine, renderer);
 
 void setup() {

@@ -4,6 +4,9 @@
 #include "Planet.h"
 #include "Constants.h"
 
+// Forward declaration
+class Renderer;
+
 /**
  * Physics Engine Class
  * Calculates planet movements and performs physics simulation
@@ -12,8 +15,9 @@ class PhysicsEngine {
 public:
     /**
      * Constructor
+     * @param renderer Reference to renderer for firework effects
      */
-    PhysicsEngine();
+    PhysicsEngine(Renderer& renderer);
 
     /**
      * Add a planet
@@ -93,6 +97,7 @@ private:
     std::vector<Planet> planets;  // Collection of planets
     unsigned long lastTrailUpdateTime;  // Timer for trail updates
     const double distanceScaleSquared;  // Square of distance scale (for optimization)
+    Renderer& renderer;  // Reference to renderer for firework effects
     
     // Collision effect variables
     bool collisionEffectActive;  // Whether there is an active collision effect

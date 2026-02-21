@@ -77,3 +77,17 @@ namespace CollisionConstants {
     // Duration of collision effect (milliseconds)
     constexpr unsigned long COLLISION_EFFECT_DURATION = 105;
 }
+
+// Constants related to firework effects
+namespace FireworkConstants {
+    // Number of particles per firework
+    constexpr int PARTICLE_COUNT = 30;
+    // Initial speed of particles (pixels per frame)
+    constexpr double PARTICLE_SPEED = 3.0;
+    // Lifetime of particles (frames)
+    constexpr int PARTICLE_LIFETIME = 10;
+    // Gravity applied to particles (pixels per frame squared)
+    constexpr double PARTICLE_GRAVITY = 1.0;
+    // Maximum number of firework effects
+    constexpr int MAX_EFFECTS = 5;
+}

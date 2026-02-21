@@ -1,8 +1,10 @@
 #include "PhysicsEngine.h"
+#include "Renderer.h"
 #include <cmath>
 
-PhysicsEngine::PhysicsEngine() 
-    : lastTrailUpdateTime(0),
+PhysicsEngine::PhysicsEngine(Renderer& renderer) 
+    : renderer(renderer),
+      lastTrailUpdateTime(0),
       distanceScaleSquared(PhysicsConstants::DISTANCE_SCALE * PhysicsConstants::DISTANCE_SCALE),
       collisionEffectActive(false),
       collisionEffectX(0),
@@ -153,6 +155,9 @@ void PhysicsEngine::removeOutOfBoundsPlanets(int maxX, int maxY) {
             collisionEffectX = planet.getX();
             collisionEffectY = planet.getY();
             collisionEffectStartTime = millis();
+            
+            // Create firework effect at collision position
+            renderer.createFirework(collisionEffectX, collisionEffectY, planet.getColor());
             
             // Play sound effect
             M5.Speaker.tone(ToneConstants::COLLISION_TONE_FREQUENCY, ToneConstants::TONE_DURATION);
