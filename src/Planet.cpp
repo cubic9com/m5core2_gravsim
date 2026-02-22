@@ -63,8 +63,10 @@ void Planet::drawTrail(M5Canvas& canvas, int centerX, int centerY) const {
         int trailScreenX = centerX + trailX[idx];
         int trailScreenY = centerY + trailY[idx];
         
-        // Trail transparency (older points are more transparent)
-        uint8_t alpha = 255 * (PlanetConstants::TRAIL_LENGTH - i) / PlanetConstants::TRAIL_LENGTH;
+        // Trail transparency with non-linear gradient for smoother, more natural effect
+        // Use exponential curve: alpha stays high longer, then fades faster at the end
+        float normalizedPosition = 1.0f - (float)i / PlanetConstants::TRAIL_LENGTH;
+        uint8_t alpha = 255 * pow(normalizedPosition, 2.0f);  // Quadratic falloff for beautiful fade
         
         // Trail color (faded version of original color)
         uint16_t trailColor = alphaBlend(color, BLACK, alpha);
@@ -85,25 +87,48 @@ bool Planet::isCollidedWithSun() const {
 }
 
 uint16_t Planet::randomPastelColor() {
-    // Method to generate vibrant colors
+    // Method to generate cosmic vibrant colors
+    // Creates colors reminiscent of nebulas and distant galaxies
     uint8_t r, g, b;
     
-    // Randomly select one of three components to be high, others to be low-medium
-    switch (random(3)) {
-        case 0: // Emphasize red
-            r = 200 + random(56);  // 200-255
-            g = 80 + random(150);  // 80-229
-            b = 80 + random(150);  // 80-229
+    // Select from multiple cosmic color palettes
+    int palette = random(7);
+    
+    switch (palette) {
+        case 0: // Magenta / Purple Nebula
+            r = 180 + random(76);   // 180-255
+            g = 50 + random(100);    // 50-149
+            b = 200 + random(56);    // 200-255
             break;
-        case 1: // Emphasize green
-            r = 80 + random(150);  // 80-229
-            g = 200 + random(56);  // 200-255
-            b = 80 + random(150);  // 80-229
+        case 1: // Cyan / Blue Starlight
+            r = 50 + random(80);     // 50-129
+            g = 180 + random(76);    // 180-255
+            b = 230 + random(26);    // 230-255
             break;
-        case 2: // Emphasize blue
-            r = 80 + random(150);  // 80-229
-            g = 80 + random(150);  // 80-229
-            b = 200 + random(56);  // 200-255
+        case 2: // Golden / Warm Dwarf Star
+            r = 230 + random(26);    // 230-255
+            g = 160 + random(60);    // 160-219
+            b = 80 + random(100);    // 80-179
+            break;
+        case 3: // Emerald / Teal Cosmic Dust
+            r = 50 + random(100);    // 50-149
+            g = 200 + random(56);    // 200-255
+            b = 150 + random(70);    // 150-219
+            break;
+        case 4: // Rose / Pink Gas Cloud
+            r = 230 + random(26);    // 230-255
+            g = 100 + random(80);    // 100-179
+            b = 180 + random(76);    // 180-255
+            break;
+        case 5: // Lavender / Purple Galaxy Core
+            r = 160 + random(60);    // 160-219
+            g = 120 + random(80);    // 120-199
+            b = 220 + random(36);    // 220-255
+            break;
+        case 6: // Silver / White Dwarf
+            r = 200 + random(56);    // 200-255
+            g = 200 + random(56);    // 200-255
+            b = 220 + random(36);    // 220-255
             break;
     }
     

@@ -54,8 +54,8 @@ namespace PlanetConstants {
     constexpr int RADIUS = 2;
     // Maximum number of planets
     constexpr int MAX_COUNT = 10;
-    // Number of trail points
-    constexpr int TRAIL_LENGTH = 10;
+    // Number of trail points (increased for longer, beautiful light tails)
+    constexpr int TRAIL_LENGTH = 35;
 }
 
 // Constants related to rendering
