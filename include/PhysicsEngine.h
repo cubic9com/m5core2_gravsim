@@ -27,7 +27,7 @@ public:
      * @param vy Initial Y velocity
      * @param color Planet color
      */
-    void addPlanet(double x, double y, double vx, double vy);
+    void addPlanet(double x, double y, double vx, double vy, uint16_t color);
 
     /**
      * Update physics simulation

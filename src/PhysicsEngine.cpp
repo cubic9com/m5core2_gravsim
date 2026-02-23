@@ -16,8 +16,7 @@ PhysicsEngine::PhysicsEngine(Renderer& renderer)
     accelerationY.reserve(PlanetConstants::MAX_COUNT);
 }
 
-void PhysicsEngine::addPlanet(double x, double y, double vx, double vy) {
-    uint16_t color = Planet::randomPastelColor();
+void PhysicsEngine::addPlanet(double x, double y, double vx, double vy, uint16_t color) {
     planets.emplace_back(x, y, vx, vy, color);
     if (planets.size() > PlanetConstants::MAX_COUNT) {
         planets.erase(planets.begin());

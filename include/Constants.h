@@ -91,3 +91,17 @@ namespace FireworkConstants {
     // Maximum number of firework effects
     constexpr int MAX_EFFECTS = 5;
 }
+
+// Constants related to ripple effects
+namespace RippleConstants {
+    // Ripple expansion speed (pixels per frame)
+    constexpr double EXPANSION_SPEED = 2.5;
+    // Maximum ripple radius (pixels)
+    constexpr int MAX_RADIUS = 50;
+    // Ripple lifetime (frames)
+    constexpr int LIFETIME = 20;
+    // Maximum number of simultaneous ripples
+    constexpr int MAX_RIPPLES = 10;
+    // Initial ripple radius (pixels)
+    constexpr int INITIAL_RADIUS = 2;
+}

@@ -36,8 +36,14 @@ bool TouchHandler::update() {
         double planetX = touchStartX - renderer.getCenterX();
         double planetY = touchStartY - renderer.getCenterY();
         
-        // Add new planet
-        physicsEngine.addPlanet(planetX, planetY, vx, vy);
+        // Generate color for both planet and ripple
+        uint16_t planetColor = Planet::randomPastelColor();
+        
+        // Create ripple effect at planet creation position
+        renderer.createRipple(planetX, planetY, planetColor);
+        
+        // Add new planet with the same color
+        physicsEngine.addPlanet(planetX, planetY, vx, vy, planetColor);
         
         // Reset touch state
         isTouching = false;

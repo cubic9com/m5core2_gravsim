@@ -19,6 +19,18 @@ struct Particle {
 };
 
 /**
+ * Ripple structure for planet creation effect
+ */
+struct Ripple {
+    double x;              // X position (relative to center)
+    double y;              // Y position (relative to center)
+    double radius;         // Current radius (pixels)
+    uint16_t color;        // Ripple color
+    int lifetime;          // Remaining lifetime (frames)
+    int initialLifetime;   // Initial lifetime (for alpha calculation)
+};
+
+/**
  * Renderer Class
  * Handles rendering-related processes
  */
@@ -52,6 +64,14 @@ public:
      * @param color Color of the firework particles
      */
     void createFirework(double x, double y, uint16_t color);
+
+    /**
+     * Create ripple effect at specified position
+     * @param x X position (relative to center)
+     * @param y Y position (relative to center)
+     * @param color Color of the ripple
+     */
+    void createRipple(double x, double y, uint16_t color);
 
     /**
      * Get X coordinate of screen center
@@ -89,6 +109,11 @@ private:
     Particle particles[MAX_PARTICLES];
     int particleCount;
 
+    // Ripple effects
+    static constexpr int MAX_RIPPLES = RippleConstants::MAX_RIPPLES;
+    Ripple ripples[MAX_RIPPLES];
+    int rippleCount;
+
     /**
      * Alpha blend a color with black background
      * @param fg Foreground color
@@ -106,6 +131,16 @@ private:
      * Draw firework particles
      */
     void drawParticles();
+
+    /**
+     * Update ripple effects
+     */
+    void updateRipples();
+
+    /**
+     * Draw ripple effects
+     */
+    void drawRipples();
 
     /**
      * Draw an arrow

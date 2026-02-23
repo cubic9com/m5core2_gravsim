@@ -3,7 +3,7 @@
 #include <cmath>
 
 Renderer::Renderer(M5GFX& display) 
-    : display(display), canvas(&display), sun(), lastDrawTime(0), particleCount(0) {
+    : display(display), canvas(&display), sun(), lastDrawTime(0), particleCount(0), rippleCount(0) {
 }
 
 void Renderer::init() {
@@ -42,6 +42,9 @@ void Renderer::render(const PhysicsEngine& physicsEngine,
         planet.draw(canvas, centerX, centerY);
     }
     
+    // Draw ripples
+    drawRipples();
+    
     // Draw firework particles
     drawParticles();
     
@@ -62,6 +65,9 @@ void Renderer::render(const PhysicsEngine& physicsEngine,
     
     // Transfer canvas content to display
     canvas.pushSprite(0, 0);
+    
+    // Update ripples after rendering
+    updateRipples();
     
     // Update particles after rendering
     updateParticles();
@@ -198,5 +204,66 @@ void Renderer::drawParticles() {
         // Draw particle with alpha blending
         uint16_t blendedColor = alphaBlend(particles[i].color, alpha);
         canvas.fillCircle(screenX, screenY, radius, blendedColor);
+    }
+}
+
+void Renderer::createRipple(double x, double y, uint16_t color) {
+    // Create ripple effect at specified position
+    if (rippleCount >= MAX_RIPPLES) {
+        return;  // Maximum ripples reached
+    }
+    
+    // Set ripple properties
+    ripples[rippleCount].x = x;
+    ripples[rippleCount].y = y;
+    ripples[rippleCount].radius = RippleConstants::INITIAL_RADIUS;
+    ripples[rippleCount].color = color;
+    ripples[rippleCount].lifetime = RippleConstants::LIFETIME;
+    ripples[rippleCount].initialLifetime = RippleConstants::LIFETIME;
+    
+    rippleCount++;
+}
+
+void Renderer::updateRipples() {
+    // Update all ripples
+    for (int i = rippleCount - 1; i >= 0; i--) {
+        // Expand radius
+        ripples[i].radius += RippleConstants::EXPANSION_SPEED;
+        
+        // Decrease lifetime
+        ripples[i].lifetime--;
+        
+        // Remove dead ripples
+        if (ripples[i].lifetime <= 0) {
+            // Move last ripple to current position (to maintain compact array)
+            ripples[i] = ripples[rippleCount - 1];
+            rippleCount--;
+        }
+    }
+}
+
+void Renderer::drawRipples() {
+    for (int i = 0; i < rippleCount; i++) {
+        // Calculate alpha based on remaining lifetime (fade out)
+        uint8_t alpha = 255 * ripples[i].lifetime / ripples[i].initialLifetime;
+        
+        // Calculate screen position
+        int screenX = centerX + static_cast<int>(ripples[i].x);
+        int screenY = centerY + static_cast<int>(ripples[i].y);
+        
+        // Calculate radius (ensure at least 1)
+        int radius = static_cast<int>(ripples[i].radius);
+        if (radius < 1) radius = 1;
+        
+        // Draw ripple with alpha blending
+        uint16_t blendedColor = alphaBlend(ripples[i].color, alpha);
+        canvas.drawCircle(screenX, screenY, radius, blendedColor);
+        
+        // Draw a second, inner ripple ring for enhanced effect
+        if (radius > 4) {
+            uint8_t innerAlpha = alpha * 0.5;  // Inner ring is more transparent
+            uint16_t innerBlendedColor = alphaBlend(ripples[i].color, innerAlpha);
+            canvas.drawCircle(screenX, screenY, radius - 3, innerBlendedColor);
+        }
     }
 }
