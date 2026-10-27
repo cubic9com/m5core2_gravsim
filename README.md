@@ -13,8 +13,8 @@ m5core2_gravsim プロジェクトは、[M5Stack Core 2](https://docs.m5stack.co
 
 # Motivation / 開発のきっかけ
 
-Have you ever thought how cool it'd be to hold the universe in the palm of your hand?
-That little idea was where this whole project started.
+Have you ever thought about how cool it'd be to hold the universe in the palm of your hand?
+That little idea is where this whole project started.
 I wanted to do more than just look at space—I wanted to bring the swirling dance of the planets to life in an interactive way, right on a tiny device like the M5Stack Core 2.
 It's a fun way to play with their motion and grasp how gravity shapes our cosmos.
 
@@ -29,7 +29,7 @@ M5Stack Core 2みたいな小さなデバイスの上で、ただ眺めるだけ
 
 1. Register an [M5Stack Community](https://community.m5stack.com/) account if you haven't already.
 
-1. Launch the [M5Burner](https://docs.m5stack.com/en/download) .
+1. Launch [M5Burner](https://docs.m5stack.com/en/download) .
 
 1. Click `USER CUSTOM` in the lower left corner.
 
@@ -72,13 +72,13 @@ M5Stack Core 2みたいな小さなデバイスの上で、ただ眺めるだけ
     code .
     ```
 
-1. Install `PlatformIO IDE` extension:
+1. Install the `PlatformIO IDE` extension:
     - Go to the Extensions view (`Ctrl+Shift+X`).
     - Search for `PlatformIO IDE` and install it.
 
 1. Open PlatformIO Home:
     - In the left Activity Bar, click PlatformIO icon.
-    - In the left Primary Sidebar, fo to `QUICK ACCESS > PIO Home > Open`.
+    - In the left Primary Sidebar, go to `QUICK ACCESS > PIO Home > Open`.
 
 1. Open the project:
     - In the right Editor Group, click `Open Project` in the `PIO HOME` tab.
