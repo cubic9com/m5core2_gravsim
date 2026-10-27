@@ -1,7 +1,7 @@
 
 # Overview / 概要
 
-The m5core2_gravsim project is a gravity simulator of planetary system for the [M5Stack Core 2](https://docs.m5stack.com/#/en/core/core2) .
+The m5core2_gravsim project is a gravity simulator of a planetary system for the [M5Stack Core 2](https://docs.m5stack.com/#/en/core/core2) .
 
 \[日本語\]
 
