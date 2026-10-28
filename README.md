@@ -1,11 +1,11 @@
 
 # Overview / 概要
 
-The m5core2_gravsim project is a gravity simulator of a planetary system for the [M5Stack Core 2](https://docs.m5stack.com/#/en/core/core2) .
+Hold a universe in your palm: m5core2_gravsim is a touch-based planetary gravity simulator for the [M5Stack Core 2](https://docs.m5stack.com/#/en/core/core2). Tap the screen to place a planet, swipe to launch it into orbit, and watch each world tug on the others in real time.
 
 \[日本語\]
 
-m5core2_gravsim プロジェクトは、[M5Stack Core 2](https://docs.m5stack.com/#/en/core/core2) 用の惑星系の万有引力シミュレーターです。
+手のひらに宇宙を――「m5core2_gravsim」は、[M5Stack Core 2](https://docs.m5stack.com/#/en/core/core2)向けのタッチ操作型惑星系万有引力シミュレーターです。画面をタップして惑星を配置し、スワイプして軌道に投入しましょう。それぞれの惑星が互いに重力で引き合う様子を、リアルタイムで観察できます。
 
 # Video / 動画
 
