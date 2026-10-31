@@ -20,7 +20,7 @@ uint16_t Planet::alphaBlend(uint16_t fg, uint16_t bg, uint8_t alpha) const {
     return (r << 11) | (g << 5) | b;
 }
 
-Planet::Planet(double x, double y, double vx, double vy, uint16_t color)
+Planet::Planet(float x, float y, float vx, float vy, uint16_t color)
     : x(x), y(y), vx(vx), vy(vy), color(color), trailIndex(0) {
     // Initialize trail positions
     for (int i = 0; i < PlanetConstants::TRAIL_LENGTH; i++) {
@@ -29,7 +29,7 @@ Planet::Planet(double x, double y, double vx, double vy, uint16_t color)
     }
 }
 
-void Planet::update(double ax, double ay, bool updateTrails) {
+void Planet::update(float ax, float ay, bool updateTrails) {
     // Update velocity: v = v + a * dt
     vx += ax * PhysicsConstants::TIME_SCALE;
     vy += ay * PhysicsConstants::TIME_SCALE;
@@ -66,7 +66,7 @@ void Planet::drawTrail(M5Canvas& canvas, int centerX, int centerY) const {
         // Trail transparency with non-linear gradient for smoother, more natural effect
         // Use exponential curve: alpha stays high longer, then fades faster at the end
         float normalizedPosition = 1.0f - (float)i / PlanetConstants::TRAIL_LENGTH;
-        uint8_t alpha = 255 * pow(normalizedPosition, 2.0f);  // Quadratic falloff for beautiful fade
+        uint8_t alpha = (uint8_t)(255.0f * normalizedPosition * normalizedPosition);  // Quadratic falloff for beautiful fade
         
         // Trail color (faded version of original color)
         uint16_t trailColor = alphaBlend(color, BLACK, alpha);
@@ -82,7 +82,7 @@ bool Planet::isOutOfBounds(int maxX, int maxY) const {
 
 bool Planet::isCollidedWithSun() const {
     // Collision detected if distance from sun center is less than sun radius
-    double distanceSquared = x*x + y*y;
+    float distanceSquared = x*x + y*y;
     return (distanceSquared < SunConstants::RADIUS_SQUARED);
 }
 

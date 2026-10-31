@@ -9,10 +9,10 @@
  * Particle structure for firework effects
  */
 struct Particle {
-    double x;              // X position (relative to center)
-    double y;              // Y position (relative to center)
-    double vx;             // X velocity
-    double vy;             // Y velocity
+    float x;               // X position (relative to center)
+    float y;               // Y position (relative to center)
+    float vx;              // X velocity
+    float vy;              // Y velocity
     uint16_t color;        // Particle color
     int lifetime;          // Remaining lifetime (frames)
     int initialLifetime;   // Initial lifetime (for alpha calculation)
@@ -22,9 +22,9 @@ struct Particle {
  * Ripple structure for planet creation effect
  */
 struct Ripple {
-    double x;              // X position (relative to center)
-    double y;              // Y position (relative to center)
-    double radius;         // Current radius (pixels)
+    float x;               // X position (relative to center)
+    float y;               // Y position (relative to center)
+    float radius;          // Current radius (pixels)
     uint16_t color;        // Ripple color
     int lifetime;          // Remaining lifetime (frames)
     int initialLifetime;   // Initial lifetime (for alpha calculation)
@@ -63,7 +63,7 @@ public:
      * @param y Y position (relative to center)
      * @param color Color of the firework particles
      */
-    void createFirework(double x, double y, uint16_t color);
+    void createFirework(float x, float y, uint16_t color);
 
     /**
      * Create ripple effect at specified position
@@ -71,7 +71,7 @@ public:
      * @param y Y position (relative to center)
      * @param color Color of the ripple
      */
-    void createRipple(double x, double y, uint16_t color);
+    void createRipple(float x, float y, uint16_t color);
 
     /**
      * Get X coordinate of screen center

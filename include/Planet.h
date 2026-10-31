@@ -17,7 +17,7 @@ public:
      * @param vy Initial Y velocity
      * @param color Planet color
      */
-    Planet(double x, double y, double vx, double vy, uint16_t color);
+    Planet(float x, float y, float vx, float vy, uint16_t color);
 
     /**
      * Update planet position
@@ -25,7 +25,7 @@ public:
      * @param ay Acceleration in Y direction
      * @param updateTrails Whether to update trail positions
      */
-    void update(double ax, double ay, bool updateTrails);
+    void update(float ax, float ay, bool updateTrails);
 
     /**
      * Draw the planet
@@ -58,10 +58,10 @@ public:
     bool isCollidedWithSun() const;
 
     // Getters for position and velocity
-    double getX() const { return x; }
-    double getY() const { return y; }
-    double getVx() const { return vx; }
-    double getVy() const { return vy; }
+    float getX() const { return x; }
+    float getY() const { return y; }
+    float getVx() const { return vx; }
+    float getVy() const { return vy; }
     uint16_t getColor() const { return color; }
     
     /**
@@ -80,8 +80,8 @@ private:
      */
     uint16_t alphaBlend(uint16_t fg, uint16_t bg, uint8_t alpha) const;
 
-    double x, y;       // Position
-    double vx, vy;     // Velocity
+    float x, y;        // Position
+    float vx, vy;      // Velocity
     uint16_t color;    // Color
     
     // Past positions (for trail effect) - using ring buffer

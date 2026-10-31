@@ -128,7 +128,7 @@ void Renderer::drawArrow(int startX, int startY, int endX, int endY, uint16_t co
     canvas.fillTriangle(x1, y1, x2, y2, x3, y3, color);
 }
 
-void Renderer::createFirework(double x, double y, uint16_t color) {
+void Renderer::createFirework(float x, float y, uint16_t color) {
     // Create particles for firework effect
     for (int i = 0; i < FireworkConstants::PARTICLE_COUNT; i++) {
         if (particleCount >= MAX_PARTICLES) {
@@ -207,7 +207,7 @@ void Renderer::drawParticles() {
     }
 }
 
-void Renderer::createRipple(double x, double y, uint16_t color) {
+void Renderer::createRipple(float x, float y, uint16_t color) {
     // Create ripple effect at specified position
     if (rippleCount >= MAX_RIPPLES) {
         return;  // Maximum ripples reached

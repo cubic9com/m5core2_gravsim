@@ -16,7 +16,7 @@ PhysicsEngine::PhysicsEngine(Renderer& renderer)
     accelerationY.reserve(PlanetConstants::MAX_COUNT);
 }
 
-void PhysicsEngine::addPlanet(double x, double y, double vx, double vy, uint16_t color) {
+void PhysicsEngine::addPlanet(float x, float y, float vx, float vy, uint16_t color) {
     planets.emplace_back(x, y, vx, vy, color);
     if (planets.size() > PlanetConstants::MAX_COUNT) {
         planets.erase(planets.begin());
@@ -32,35 +32,35 @@ bool PhysicsEngine::shouldUpdateTrails() {
     return false;
 }
 
-void PhysicsEngine::calculateSunGravity(size_t planetIndex, std::vector<double>& ax, std::vector<double>& ay) {
+void PhysicsEngine::calculateSunGravity(size_t planetIndex, std::vector<float>& ax, std::vector<float>& ay) {
     // Calculate gravity from the sun (sun is at origin (0,0))
-    double dx = -planets[planetIndex].getX();
-    double dy = -planets[planetIndex].getY();
-    double r2 = dx*dx + dy*dy;
+    float dx = -planets[planetIndex].getX();
+    float dy = -planets[planetIndex].getY();
+    float r2 = dx*dx + dy*dy;
     
     // Optimized calculation using inverse square root
     // F = G * m1 * m2 / r^2, a = F / m
     // Combined: a = G * m2 * dx / (r^3) where r^3 = r * r^2
-    double r = sqrt(r2);
-    double r_inv3 = 1.0 / (r * r2);  // 1/r^3 using only one sqrt
+    float r = sqrtf(r2);
+    float r_inv3 = 1.0f / (r * r2);  // 1/r^3 using only one sqrt
     
     // Acceleration calculation (optimized to reduce operations)
-    double factor = PhysicsConstants::G * SunConstants::MASS * r_inv3 / distanceScaleSquared;
-    double accelX = factor * dx;
-    double accelY = factor * dy;
+    float factor = PhysicsConstants::G * SunConstants::MASS * r_inv3 / distanceScaleSquared;
+    float accelX = factor * dx;
+    float accelY = factor * dy;
     
     ax[planetIndex] += accelX;
     ay[planetIndex] += accelY;
 }
 
-void PhysicsEngine::calculatePlanetGravity(std::vector<double>& ax, std::vector<double>& ay) {
+void PhysicsEngine::calculatePlanetGravity(std::vector<float>& ax, std::vector<float>& ay) {
     // Calculate gravity between planets (skip calculation for distant planets to reduce processing load)
     for (size_t i = 0; i < planets.size(); i++) {
         for (size_t j = i + 1; j < planets.size(); j++) {
             // Calculate distance between planets
-            double dx = planets[j].getX() - planets[i].getX();
-            double dy = planets[j].getY() - planets[i].getY();
-            double r2 = dx*dx + dy*dy;
+            float dx = planets[j].getX() - planets[i].getX();
+            float dy = planets[j].getY() - planets[i].getY();
+            float r2 = dx*dx + dy*dy;
             
             // Skip calculation if distance is too far (to reduce processing load)
             if (r2 > PhysicsConstants::MAX_FORCE_DISTANCE_SQUARED) {
@@ -74,13 +74,13 @@ void PhysicsEngine::calculatePlanetGravity(std::vector<double>& ax, std::vector<
             
             // Optimized calculation using inverse cube root
             // a = G * m * dx / (r^3) where r^3 = r * r^2
-            double r = sqrt(r2);
-            double r_inv3 = 1.0 / (r * r2);  // 1/r^3 using only one sqrt
+            float r = sqrtf(r2);
+            float r_inv3 = 1.0f / (r * r2);  // 1/r^3 using only one sqrt
             
             // Acceleration calculation (optimized)
-            double factor = PhysicsConstants::G * PlanetConstants::MASS * r_inv3 / distanceScaleSquared;
-            double accelX = factor * dx;
-            double accelY = factor * dy;
+            float factor = PhysicsConstants::G * PlanetConstants::MASS * r_inv3 / distanceScaleSquared;
+            float accelX = factor * dx;
+            float accelY = factor * dy;
             
             // Acceleration for planet i
             ax[i] += accelX;
@@ -113,8 +113,8 @@ bool PhysicsEngine::update() {
     // Reuse acceleration arrays (resize and clear)
     accelerationX.resize(planets.size());
     accelerationY.resize(planets.size());
-    std::fill(accelerationX.begin(), accelerationX.end(), 0.0);
-    std::fill(accelerationY.begin(), accelerationY.end(), 0.0);
+    std::fill(accelerationX.begin(), accelerationX.end(), 0.0f);
+    std::fill(accelerationY.begin(), accelerationY.end(), 0.0f);
     
     // Apply gravity from the sun to each planet
     for (size_t i = 0; i < planets.size(); i++) {
@@ -179,10 +179,10 @@ bool PhysicsEngine::hasActiveCollisionEffect() const {
     return collisionEffectActive;
 }
 
-double PhysicsEngine::getCollisionEffectX() const {
+float PhysicsEngine::getCollisionEffectX() const {
     return collisionEffectX;
 }
 
-double PhysicsEngine::getCollisionEffectY() const {
+float PhysicsEngine::getCollisionEffectY() const {
     return collisionEffectY;
 }

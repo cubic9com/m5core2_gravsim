@@ -25,16 +25,16 @@ bool TouchHandler::update() {
         auto touch = M5.Touch.getDetail();
         
         // Calculate initial velocity from drag distance and direction
-        double dx = touch.x - touchStartX;
-        double dy = touch.y - touchStartY;
+        float dx = touch.x - touchStartX;
+        float dy = touch.y - touchStartY;
         
         // Velocity magnitude is proportional to distance
-        double vx = dx * PhysicsConstants::SPEED_FACTOR;
-        double vy = dy * PhysicsConstants::SPEED_FACTOR;
+        float vx = dx * PhysicsConstants::SPEED_FACTOR;
+        float vy = dy * PhysicsConstants::SPEED_FACTOR;
         
         // Convert planet position to sun-centered coordinate system
-        double planetX = touchStartX - renderer.getCenterX();
-        double planetY = touchStartY - renderer.getCenterY();
+        float planetX = touchStartX - renderer.getCenterX();
+        float planetY = touchStartY - renderer.getCenterY();
         
         // Generate color for both planet and ripple
         uint16_t planetColor = Planet::randomPastelColor();

@@ -12,29 +12,32 @@ namespace ToneConstants {
 }
 
 // Constants related to physics simulation
+// Note: float is used for all physics math. The ESP32 has no
+// double-precision FPU, so double arithmetic is emulated in
+// software and is far slower than float.
 namespace PhysicsConstants {
     // Gravitational constant
-    constexpr double G = 6.67430e-11;
+    constexpr float G = 6.67430e-11f;
     // Time scale (to speed up simulation)
-    constexpr double TIME_SCALE = 2.0e10;
+    constexpr float TIME_SCALE = 2.0e10f;
     // Distance scale (to adjust display)
-    constexpr double DISTANCE_SCALE = 1.0e9;
+    constexpr float DISTANCE_SCALE = 1.0e9f;
     // Minimum distance (to prevent collision)
-    constexpr double MIN_DISTANCE = 3.0;
+    constexpr float MIN_DISTANCE = 3.0f;
     // Skip gravity calculation between planets beyond this distance (to reduce processing load)
-    constexpr double MAX_FORCE_DISTANCE = 100.0;
+    constexpr float MAX_FORCE_DISTANCE = 100.0f;
     // Velocity factor
-    constexpr double SPEED_FACTOR = 2.0e-14;
+    constexpr float SPEED_FACTOR = 2.0e-14f;
     
     // Pre-computed constants for optimization
-    constexpr double MAX_FORCE_DISTANCE_SQUARED = MAX_FORCE_DISTANCE * MAX_FORCE_DISTANCE;
-    constexpr double MIN_DISTANCE_SQUARED = MIN_DISTANCE * MIN_DISTANCE;
+    constexpr float MAX_FORCE_DISTANCE_SQUARED = MAX_FORCE_DISTANCE * MAX_FORCE_DISTANCE;
+    constexpr float MIN_DISTANCE_SQUARED = MIN_DISTANCE * MIN_DISTANCE;
 }
 
 // Constants related to the sun
 namespace SunConstants {
     // Sun's mass
-    constexpr double MASS = 3.33e5;
+    constexpr float MASS = 3.33e5f;
     // Sun's radius (pixels)
     constexpr int RADIUS = 10;
     // Sun's base color
@@ -43,13 +46,13 @@ namespace SunConstants {
     constexpr float BRIGHTNESS_FLUCTUATION = 0.1f;  // Brightness fluctuation range (0-1)
     
     // Pre-computed constants for optimization
-    constexpr double RADIUS_SQUARED = RADIUS * RADIUS;
+    constexpr float RADIUS_SQUARED = RADIUS * RADIUS;
 }
 
 // Constants related to planets
 namespace PlanetConstants {
     // Planet's mass
-    constexpr double MASS = 30000;
+    constexpr float MASS = 30000.0f;
     // Planet's radius (pixels)
     constexpr int RADIUS = 2;
     // Maximum number of planets
@@ -83,11 +86,11 @@ namespace FireworkConstants {
     // Number of particles per firework
     constexpr int PARTICLE_COUNT = 30;
     // Initial speed of particles (pixels per frame)
-    constexpr double PARTICLE_SPEED = 3.0;
+    constexpr float PARTICLE_SPEED = 3.0f;
     // Lifetime of particles (frames)
     constexpr int PARTICLE_LIFETIME = 10;
     // Gravity applied to particles (pixels per frame squared)
-    constexpr double PARTICLE_GRAVITY = 1.0;
+    constexpr float PARTICLE_GRAVITY = 1.0f;
     // Maximum number of firework effects
     constexpr int MAX_EFFECTS = 5;
 }
@@ -95,7 +98,7 @@ namespace FireworkConstants {
 // Constants related to ripple effects
 namespace RippleConstants {
     // Ripple expansion speed (pixels per frame)
-    constexpr double EXPANSION_SPEED = 2.5;
+    constexpr float EXPANSION_SPEED = 2.5f;
     // Maximum ripple radius (pixels)
     constexpr int MAX_RADIUS = 50;
     // Ripple lifetime (frames)

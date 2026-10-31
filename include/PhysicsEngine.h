@@ -27,7 +27,7 @@ public:
      * @param vy Initial Y velocity
      * @param color Planet color
      */
-    void addPlanet(double x, double y, double vx, double vy, uint16_t color);
+    void addPlanet(float x, float y, float vx, float vy, uint16_t color);
 
     /**
      * Update physics simulation
@@ -64,13 +64,13 @@ public:
      * Get the X coordinate of the collision effect
      * @return X coordinate of the collision effect
      */
-    double getCollisionEffectX() const;
+    float getCollisionEffectX() const;
     
     /**
      * Get the Y coordinate of the collision effect
      * @return Y coordinate of the collision effect
      */
-    double getCollisionEffectY() const;
+    float getCollisionEffectY() const;
 
 private:
     /**
@@ -79,14 +79,14 @@ private:
      * @param ax Array of X components of acceleration
      * @param ay Array of Y components of acceleration
      */
-    void calculateSunGravity(size_t planetIndex, std::vector<double>& ax, std::vector<double>& ay);
+    void calculateSunGravity(size_t planetIndex, std::vector<float>& ax, std::vector<float>& ay);
 
     /**
      * Calculate gravity between planets
      * @param ax Array of X components of acceleration
      * @param ay Array of Y components of acceleration
      */
-    void calculatePlanetGravity(std::vector<double>& ax, std::vector<double>& ay);
+    void calculatePlanetGravity(std::vector<float>& ax, std::vector<float>& ay);
 
     /**
      * Determine if trail positions need to be updated
@@ -96,16 +96,16 @@ private:
 
     std::vector<Planet> planets;  // Collection of planets
     unsigned long lastTrailUpdateTime;  // Timer for trail updates
-    const double distanceScaleSquared;  // Square of distance scale (for optimization)
+    const float distanceScaleSquared;  // Square of distance scale (for optimization)
     Renderer& renderer;  // Reference to renderer for firework effects
     
     // Collision effect variables
     bool collisionEffectActive;  // Whether there is an active collision effect
-    double collisionEffectX;     // X coordinate of the collision effect
-    double collisionEffectY;     // Y coordinate of the collision effect
+    float collisionEffectX;     // X coordinate of the collision effect
+    float collisionEffectY;     // Y coordinate of the collision effect
     unsigned long collisionEffectStartTime;  // Start time of the collision effect
     
     // Reusable acceleration arrays (for optimization)
-    std::vector<double> accelerationX;
-    std::vector<double> accelerationY;
+    std::vector<float> accelerationX;
+    std::vector<float> accelerationY;
 };

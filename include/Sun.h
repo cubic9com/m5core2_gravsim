@@ -27,7 +27,7 @@ public:
      * Get the sun's mass
      * @return Sun's mass
      */
-    double getMass() const;
+    float getMass() const;
 
     /**
      * Get the sun's radius

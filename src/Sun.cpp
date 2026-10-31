@@ -52,7 +52,7 @@ uint16_t Sun::calculateColor() {
     return (r << 11) | (g << 5) | b;
 }
 
-double Sun::getMass() const {
+float Sun::getMass() const {
     return SunConstants::MASS;
 }
 
