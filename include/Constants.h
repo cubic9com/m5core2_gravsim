@@ -19,7 +19,7 @@ namespace PhysicsConstants {
     // Gravitational constant
     constexpr float G = 6.67430e-11f;
     // Time scale (to speed up simulation)
-    constexpr float TIME_SCALE = 2.0e10f;
+    constexpr float TIME_SCALE = 8.0e9f;
     // Distance scale (to adjust display)
     constexpr float DISTANCE_SCALE = 1.0e9f;
     // Minimum distance (to prevent collision)
@@ -27,7 +27,7 @@ namespace PhysicsConstants {
     // Skip gravity calculation between planets beyond this distance (to reduce processing load)
     constexpr float MAX_FORCE_DISTANCE = 100.0f;
     // Velocity factor
-    constexpr float SPEED_FACTOR = 2.0e-14f;
+    constexpr float SPEED_FACTOR = 1.0e-14f;
     
     // Pre-computed constants for optimization
     constexpr float MAX_FORCE_DISTANCE_SQUARED = MAX_FORCE_DISTANCE * MAX_FORCE_DISTANCE;
