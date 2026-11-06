@@ -43,15 +43,15 @@ M5Stack Core 2みたいな小さなデバイスの上で、ただ眺めるだけ
 
 1. https://burner.m5stack.com/NBLEQ9 を開く。
 
-1. Click `デバイスに書き込む` button.
+1. `デバイスに書き込む` ボタンをクリックする。
 
-1. Click `続行` button.
+1. `続行` ボタンをクリックする。
 
-1. Click `COMを選択` button.
+1. `COMを選択` ボタンをクリックする。
 
-1. Select `CP2104 USB to UART Bridge Controller` in a dialog.
+1. ダイアログで `CP2104 USB to UART Bridge Controller` を選択する。
 
-1. Click `接続` button.
+1. `接続` ボタンをクリックする。
 
 # Installation for developers / インストール（開発者向け）
 
